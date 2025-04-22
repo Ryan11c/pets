@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div>
-      <h1>Pet Wars API Routes</h1>
+      <h1>Pet Wars API Rout</h1>
       <ul>
         {routes.map((route, index) => (
           <li key={index}>{route}</li>
