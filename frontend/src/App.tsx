@@ -13,11 +13,11 @@ function App() {
   return (
     <div>
       <h1>Pet Wars API Rout</h1>
-      <ul>
+      <table>
         {routes.map((route, index) => (
-          <li key={index}>{route}</li>
+          <th key={index}>{route}</th>
         ))}
-      </ul>
+      </table>
     </div>
   );
 }
