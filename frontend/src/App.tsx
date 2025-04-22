@@ -5,7 +5,7 @@ function App() {
   const [routes, setRoutes] = useState<string[]>([]);
 
   useEffect(() => {
-    axios.get<string[]>('http://127.0.0.1:8000/api/routes/')
+    axios.get<string[]>('http://127.0.0.1:8000/routes/')
       .then(res => setRoutes(res.data))
       .catch(error => console.error('Error fetching routes:', error));
   }, []);
