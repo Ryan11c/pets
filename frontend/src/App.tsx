@@ -1,25 +1,24 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+
+const Home = () => <h1>Home Page</h1>;
+const About = () => <h1>About Us</h1>;
+const Contact = () => <h1>Contact</h1>;
 
 function App() {
-  const [routes, setRoutes] = useState<string[]>([]);
-
-  useEffect(() => {
-    axios.get<string[]>('http://127.0.0.1:8000/routes/')
-      .then(res => setRoutes(res.data))
-      .catch(error => console.error('Error fetching routes:', error));
-  }, []);
-
   return (
-    <div>
-      <h1>Pet Wars API Rout</h1>
-      <table>
-        {routes.map((route, index) => (
-          <th key={index}>{route}</th>
-        ))}
-      </table>
-    </div>
+    <Router>
+      <Navbar />
+      <div style={{ padding: "2rem" }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
