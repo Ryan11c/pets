@@ -9,6 +9,10 @@ import random
 from django.http import JsonResponse
 
 
+from .models import Pet
+from .serializers import PetSerializer
+
+
 #Pet API that returns all the pets
 @api_view(['GET'])
 def getRoutes(request):
