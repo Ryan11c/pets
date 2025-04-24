@@ -8,6 +8,7 @@ class Pet(models.Model):
     category = models.CharField(max_length=100, blank=True) 
     date = models.DateField(auto_now=True)
     picture = models.ImageField(null=True, blank=True, upload_to='images/')
+    wins = models.IntegerField(default=0)
     def __str__(self):
         return f"Name: {self.name}"
     
