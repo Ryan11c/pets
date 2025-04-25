@@ -1,24 +1,32 @@
-import React from 'react';
-import Navbar from './components/Navbar';
-import BetRatingCard from './components/BetRatingCard';
+// App.tsx
+import React from "react";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import BetRatingCard from "./components/BetRatingCard";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <Router>
+    <>
       <Navbar />
-      <div className="container mt-5 d-flex justify-content-center gap-4 flex-wrap">
-        <BetRatingCard
-          upvotes={2000}
-          downvotes={10}
-          onUpvote={() => alert('You upvoted the first one!')}
-          onDownvote={() => alert('You downvoted the first one!')}
-        />
-        <BetRatingCard
-          upvotes={1800}
-          downvotes={25}
-          onUpvote={() => alert('You upvoted the second one!')}
-          onDownvote={() => alert('You downvoted the second one!')}
-        />
+      <div className="d-flex" style={{ minHeight: "100vh" }}>
+        <div className="flex-grow-1 d-flex align-items-center justify-content-center gap-4 flex-wrap p-4">
+          <BetRatingCard
+            likes={124}
+            upvotes={87}
+            downvotes={12}
+            onUpvote={() => alert("You upvoted the first one!")}
+            onDownvote={() => alert("You downvoted the first one!")}
+          />
+          <BetRatingCard
+            likes={98}
+            upvotes={65}
+            downvotes={18}
+            onUpvote={() => alert("You upvoted the second one!")}
+            onDownvote={() => alert("You downvoted the second one!")}
+          />
+        </div>
+        <Sidebar />
       </div>
     </>
   );
