@@ -11,14 +11,13 @@ const leaderboardData = [
 const Sidebar: React.FC = () => {
   return (
     <div
-      className="bg-dark text-white p-4"
+      className="text-white p-4"
       style={{
         width: "280px",
         minHeight: "100vh",
-        borderLeft: "1px solid #444",
       }}
     >
-      <h4 className="mb-4 text-center">🏆 Leaderboard</h4>
+      <h4 className="mb-4 text-dark text-center">🏆 Leaderboard</h4>
       <div className="d-flex flex-column gap-3">
         {leaderboardData.map((entry, index) => (
           <div
