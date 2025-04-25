@@ -1,15 +1,25 @@
 import React from 'react';
 import Navbar from './components/Navbar';
-
-const Home = () => <h1>Home Page</h1>;
-const About = () => <h1>About Us</h1>;
-const Contact = () => <h1>Contact</h1>;
+import BetRatingCard from './components/BetRatingCard';
 
 function App() {
   return (
     <Router>
       <Navbar />
-      {/* Your other components here */}
+      <div className="container mt-5 d-flex justify-content-center gap-4 flex-wrap">
+        <BetRatingCard
+          upvotes={2000}
+          downvotes={10}
+          onUpvote={() => alert('You upvoted the first one!')}
+          onDownvote={() => alert('You downvoted the first one!')}
+        />
+        <BetRatingCard
+          upvotes={1800}
+          downvotes={25}
+          onUpvote={() => alert('You upvoted the second one!')}
+          onDownvote={() => alert('You downvoted the second one!')}
+        />
+      </div>
     </>
   );
 };
