@@ -22,3 +22,10 @@ class Battle(models.Model):
     pet2_votes = models.PositiveIntegerField(default=0)
     is_closed = models.BooleanField(default=False)
     winner = models.ForeignKey(Pet, related_name='won_battles', on_delete=models.SET_NULL, null=True, blank=True)
+
+
+#Comment model for each pet battle
+class Comment(models.Model):
+    battle = models.ForeignKey(Battle, related_name='comments', on_delete=models.CASCADE)
+    text = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)

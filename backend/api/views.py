@@ -73,3 +73,37 @@ def get_or_create_battle(request):
     #Create new battle with a 7 day duration
     battle = Battle.objects.create(pet1=random_pets[0], pet2=random_pets[1], end_time=now() + timedelta(days=7))
     return Response(BattleSerializer(battle).data)
+
+
+#This if for voting for a Pet in a Battle
+@api_view(['POST'])
+def vote_pet(request, battle_id):
+    try:
+        battle = Battle.objects.get(id=battle_id, is_closed=False)
+    except Battle.DoesNotExist:
+        return Response({"error": "battle not found"}, status=404)
+    pet_id = request.data.get('pet_id')
+    if pet_id == battle.pet1.id:
+        battle.pet1_votes += 1
+    elif pet_id == battle.pet2.id:
+        battle.pet2_votes += 1
+    else:
+        return Response({"error": "invalid pet"}, status=400)
+    battle.save()
+    return Response({"message": "Vote counted"})
+
+
+#This is for comment section 
+@api_view(['GET', 'POST'])
+def battle_comments(request, battle_id):
+    if request.method == 'GET':
+        comments = Comment.objects.filter(battle_id=battle_id)
+        return Response(CommentSerializer(comments, many=True).data)
+    if request.method == 'POST':
+        data = request.data.copy()
+        data['battle'] = battle_id
+        serializer = CommentSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
