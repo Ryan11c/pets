@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FaHeart, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 
 type Props = {
+  name: string;
+  imageUrl: string;
   likes: number;
   upvotes: number;
   downvotes: number;
@@ -11,6 +13,8 @@ type Props = {
 };
 
 const BetRatingCard: React.FC<Props> = ({
+  name,
+  imageUrl,
   likes,
   upvotes,
   downvotes,
@@ -23,19 +27,16 @@ const BetRatingCard: React.FC<Props> = ({
   return (
     <div
       className="bg-light rounded shadow-sm d-flex flex-column align-items-center p-3"
-      style={{ width: "500px" }}
+      style={{ width: "350px" }}
     >
-      {/* Empty image container */}
-      <div
+      <img
+        src={imageUrl}
+        alt={name}
         className="mb-3 rounded"
-        style={{
-          width: "100%",
-          height: "500px",
-          backgroundColor: "#f1f1f1",
-        }}
+        style={{ width: "100%", height: "350px", objectFit: "cover" }}
       />
+      <h5 className="mb-3">{name}</h5>
 
-      {/* Voting stats */}
       <div className="d-flex justify-content-between w-100 px-2 text-secondary">
         <div
           className="d-flex align-items-center gap-2"
